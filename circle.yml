@@ -1,0 +1,23 @@
+machine:
+  node:
+    version: 6.9.4
+
+test:
+  override:
+    - npm run build
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - git config user.email "devdoomari@gmail.com"
+      - git config user.name "devdoomari.circleci"
+      - git checkout -b dist
+      - git pull origin master
+      - git merge -X theirs --no-edit master
+      - npm run build
+      - git add -f lib
+      - git add -f lib_es6
+      - git commit --allow-empty -m $'generated from:'"$CIRCLE_SHA1"$'\ntriggered by:'"$CIRCLE_USERNAME"$'\n[ci skip]'
+      - git tag -a $'dist_'"$CIRCLE_BUILD_NUM" -m "dist"
+      - git push --force origin dist --follow-tags
