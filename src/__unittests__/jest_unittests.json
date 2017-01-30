@@ -1,0 +1,21 @@
+{
+  "bail": false,
+  "verbose": true,
+  "transform": {
+    "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/typescript-babel-jest"
+  },
+  "testPathIgnorePatterns": [
+    "<rootDir>/lib",
+    "<rootDir>/lib_es6",
+    "/node_modules/",
+    "fixtures.ts",
+    "/fixtures/"
+  ],
+  "moduleFileExtensions": [
+    "js", "jsx", "ts", "tsx", "node"
+  ],
+  "testPathDirs": [
+    "<rootDir>/src/__unittests__"
+  ],
+  "testRegex": "<rootDir>/src/__unittests__/.*\\.test.(ts|tsx|js|jsx)$"
+}
