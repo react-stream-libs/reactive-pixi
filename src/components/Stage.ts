@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { Container } from 'pixi.js';
+import { Container, Point } from 'pixi.js';
 import { BaseBlueprint } from '../types/BaseBlueprint';
 import { BasePropsType } from '../types/BasePropsType';
 import { createComponent } from './createComponent';
@@ -17,13 +17,14 @@ export type StagePropsType = {
 } & BasePropsType
   & DisplayObjectPropsType
 ;
-
+declare var window: any;
 export class _Stage extends BaseBlueprint<StagePropsType>
     implements IParentableBy<_StageParentTypes> {
   container: Container;
   parent: _StageParentTypes;
   prevProps: StagePropsType;
   init(parent: _StageParentTypes) {
+    window['stage'] = this;
     this.container = new Container();
     this.parent = parent;
     if (this.parent instanceof _Stage) {
@@ -38,10 +39,16 @@ export class _Stage extends BaseBlueprint<StagePropsType>
   }
   updateAfterChildren(props: StagePropsType) {
     if (!_.isEqual(this.prevProps, props)) {
-      this.container.x = props.x;
-      this.container.y = props.y;
-      this.container.rotation = props.rotation;
-      this.container.alpha = props.alpha;
+      this.container.x = props.x || 0;
+      this.container.y = props.y || 0;
+      this.container.pivot = props.pivot || new Point(0, 0);
+      this.container.rotation = props.rotation || 0;
+      this.container.alpha = props.alpha || 1;
+      console.error('updating Stage');
+    }
+    // FIXME: fix renderer part & move this to renderer.
+    if (this.parent instanceof _Root) {
+      this.parent.renderer.render(this.parent.container);
     }
   }
   delete() {

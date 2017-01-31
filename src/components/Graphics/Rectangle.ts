@@ -12,6 +12,7 @@ export type _RectangleParentTypes = _Graphics
 export type RectanglePropsType = {
   x: number, y: number,
   width: number, height: number,
+  color?: number, alpha?: number,
   lineStyle?: LineStyleType,
 } & BasePropsType
 ;
@@ -29,7 +30,9 @@ export class _Rectangle extends BaseBlueprint<RectanglePropsType>
   }
   updateBeforeChildren(props: RectanglePropsType) {
     const oldLineStyle = getLineStyle(this.parent.container);
+    this.parent.container.beginFill(props.color, props.alpha || 1);
     this.parent.container.drawRect(props.x, props.y, props.width, props.height);
+    this.parent.container.endFill();
     setLineStyle(this.parent.container, oldLineStyle);
   }
   updateAfterChildren(props: RectanglePropsType) {

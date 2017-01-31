@@ -28,22 +28,17 @@ export class _Graphics extends BaseBlueprint<GraphicsPropsType>
   init(parent: _GraphicsParentTypes) {
     this.container = new PixiGraphics();
     this.parent = parent;
-    if (this.parent instanceof _Graphics) {
-      this.parent.container.addChild(this.container);
-    }
-    if (this.parent instanceof _Root) {
-      this.parent.container.addChild(this.container);
-    }
+    this.parent.container.addChild(this.container);
   }
   updateBeforeChildren(props: GraphicsPropsType) {
     this.container.clear();
   }
   updateAfterChildren(props: GraphicsPropsType) {
     if (!_.isEqual(this.prevProps, props)) {
-      this.container.x = props.x;
-      this.container.y = props.y;
-      this.container.rotation = props.rotation;
-      this.container.alpha = props.alpha;
+      this.container.x = props.x || 0;
+      this.container.y = props.y || 0;
+      this.container.rotation = props.rotation || 0;
+      this.container.alpha = props.alpha || 1;
     }
   }
   delete() {

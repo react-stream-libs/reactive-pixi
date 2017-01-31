@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
-import { autoDetectRenderer } from 'pixi.js';
+import { CanvasRenderer } from 'pixi.js';
 import Renderer, { RootRenderableType } from '../../Renderer';
 
 export type PropsType = {
@@ -18,7 +18,8 @@ export default class ReactivePixiReactWrapper
   renderer: Renderer;
   componentDidMount() {
     const canvasDOM = findDOMNode<HTMLCanvasElement>(this.refs.canvasRef);
-    const pixiRenderer = autoDetectRenderer(500, 500, {
+    // FIXME: autoDetectRenderer doesn't seem to work.
+    const pixiRenderer = new CanvasRenderer(500, 500, {
       view: canvasDOM,
     });
     this.renderer = new Renderer({

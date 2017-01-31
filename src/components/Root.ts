@@ -37,34 +37,35 @@ export class _Root extends BaseBlueprint<BasePropsType> implements IParentableBy
 
 export const Root = createComponent<_Root, _NoneExistentBlueprint, _RootPropsType>(_Root);
 
-export type _CirclePropsType = {
-
-} & BasePropsType;
-
-export type _CircleParentTypes = _Root;
-export class _Circle extends BaseBlueprint<_RootPropsType>
-    implements IParentableBy<_Root> {
-  _circle: boolean;
-  init(parent: _Root) {
-
-  }
-  updateBeforeChildren(props: _CirclePropsType) {
-
-  }
-  updateAfterChildren(props: _CirclePropsType) {
-
-  }
-  delete() {
-
-  }
-}
-
 export default Root;
 
 import { RenderableType } from '../types/Renderable';
 
 export { RenderableType }
 
+
+
+// export type _CirclePropsType = {
+
+// } & BasePropsType;
+
+// export type _CircleParentTypes = _Root;
+// export class _Circle extends BaseBlueprint<_RootPropsType>
+//     implements IParentableBy<_Root> {
+//   _circle: boolean;
+//   init(parent: _Root) {
+
+//   }
+//   updateBeforeChildren(props: _CirclePropsType) {
+
+//   }
+//   updateAfterChildren(props: _CirclePropsType) {
+
+//   }
+//   delete() {
+
+//   }
+// }
 
 // export const Circle = createComponent<_Circle, _CircleParentTypes, _CirclePropsType>(_Circle);
 
