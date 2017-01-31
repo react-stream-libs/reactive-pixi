@@ -9,7 +9,6 @@ export type EventsHandlerType = {
   mouseout?: (event: interaction.InteractionEvent) => void;
   mouseover?: (event: interaction.InteractionEvent) => void;
   mouseup?: (event: interaction.InteractionEvent) => void;
-  mouseclick?: (event: interaction.InteractionEvent) => void;
   mouseupoutside?: (event: interaction.InteractionEvent) => void;
 
   rightclick?: (event: interaction.InteractionEvent) => void;
@@ -31,7 +30,6 @@ export function hasInteractivity(eventsHandler: EventsHandlerType): boolean {
     || eventsHandler.mouseout
     || eventsHandler.mouseover
     || eventsHandler.mouseup
-    || eventsHandler.mouseclick
     || eventsHandler.mouseupoutside
 
     || eventsHandler.rightclick
@@ -53,7 +51,6 @@ export function applyInteractivity(gl: Graphics, eventsHandler: EventsHandlerTyp
   gl.on('mouseout', eventsHandler.mouseout);
   gl.on('mouseover', eventsHandler.mouseover);
   gl.on('mouseup', eventsHandler.mouseup);
-  gl.on('mouseclick', eventsHandler.mouseclick);
   gl.on('mouseupoutside', eventsHandler.mouseupoutside);
 
   gl.on('rightclick', eventsHandler.rightclick);
@@ -68,13 +65,13 @@ export function applyInteractivity(gl: Graphics, eventsHandler: EventsHandlerTyp
   gl.on('touchstart', eventsHandler.touchstart);
 }
 
-export function unapplyInteractivity(gl: Graphics, eventsHandler: EventsHandlerType) {
+export function unapplyInteractivity(gl: Graphics, eventsHandler?: EventsHandlerType) {
+  if (!eventsHandler) { return }
   gl.off('click', eventsHandler.click);
   gl.off('mousedown', eventsHandler.mousedown);
   gl.off('mouseout', eventsHandler.mouseout);
   gl.off('mouseover', eventsHandler.mouseover);
   gl.off('mouseup', eventsHandler.mouseup);
-  gl.off('mouseclick', eventsHandler.mouseclick);
   gl.off('mouseupoutside', eventsHandler.mouseupoutside);
 
   gl.off('rightclick', eventsHandler.rightclick);

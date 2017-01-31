@@ -21,9 +21,9 @@ export type _GraphicsParentTypes = _Graphics
   & _Root
 ;
 export type GraphicsPropsType = {
-  eventHandlers: EventsHandlerType,
 } & BasePropsType
   & DisplayObjectPropsType
+  & EventsHandlerType
 ;
 
 export class _Graphics extends BaseBlueprint<GraphicsPropsType>
@@ -38,9 +38,9 @@ export class _Graphics extends BaseBlueprint<GraphicsPropsType>
   }
   updateBeforeChildren(props: GraphicsPropsType) {
     this.container.clear();
-    unapplyInteractivity(this.container, this.prevProps.eventHandlers);
-    this.container.interactive = hasInteractivity(props.eventHandlers);
-    applyInteractivity(this.container, props.eventHandlers);
+    unapplyInteractivity(this.container, this.prevProps);
+    this.container.interactive = hasInteractivity(props);
+    applyInteractivity(this.container, props);
   }
   updateAfterChildren(props: GraphicsPropsType) {
     if (!_.isEqual(this.prevProps, props)) {

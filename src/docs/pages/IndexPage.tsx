@@ -33,6 +33,7 @@ export default class IndexPage extends React.Component<PropsType, StateType> {
         key: 'graphics',
         // rotation: Math.PI * (this.rotation / 360),
         x: 0, y: 0,
+        click: () => { this.rotateBy(30); console.error('clicked!'); },
         // alpha: 0.5,
       }, [
         Rectangle({
@@ -49,7 +50,7 @@ export default class IndexPage extends React.Component<PropsType, StateType> {
           alpha: 0.2,
         }, [])
       ])
-    ])
+    ]);
     this.refs.reactWrapper.update(renderable);
   }
   componentDidMount() {
