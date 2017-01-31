@@ -10,12 +10,18 @@ import { DisplayObjectPropsType } from '../../types/DisplayObjectPropsType';
 import { _Root } from '../Root';
 import { _Stage } from '../Stage';
 
+import {
+  EventsHandlerType,
+  hasInteractivity,
+  applyInteractivity, unapplyInteractivity,
+} from './utils/events';
+
 export type _GraphicsParentTypes = _Graphics
   & _Stage
   & _Root
 ;
 export type GraphicsPropsType = {
-
+  eventHandlers: EventsHandlerType,
 } & BasePropsType
   & DisplayObjectPropsType
 ;
@@ -32,6 +38,9 @@ export class _Graphics extends BaseBlueprint<GraphicsPropsType>
   }
   updateBeforeChildren(props: GraphicsPropsType) {
     this.container.clear();
+    unapplyInteractivity(this.container, this.prevProps.eventHandlers);
+    this.container.interactive = hasInteractivity(props.eventHandlers);
+    applyInteractivity(this.container, props.eventHandlers);
   }
   updateAfterChildren(props: GraphicsPropsType) {
     if (!_.isEqual(this.prevProps, props)) {
@@ -40,6 +49,7 @@ export class _Graphics extends BaseBlueprint<GraphicsPropsType>
       this.container.rotation = props.rotation || 0;
       this.container.alpha = props.alpha || 1;
     }
+    this.prevProps = props;
   }
   delete() {
     if (this.parent instanceof _Graphics || this.parent instanceof _Root ) {
