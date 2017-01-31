@@ -17,7 +17,8 @@ export class __GrandParent extends BaseBlueprint<GrandParentPropsType>
   parent: _GrandparentParentTypes;
   logger: Logger;
   init(parent: _GrandparentParentTypes) { }
-  update(props: GrandParentPropsType) { }
+  updateBeforeChildren(props: GrandParentPropsType) { }
+  updateAfterChildren(props: GrandParentPropsType) { }
   delete() { }
 }
 
@@ -49,7 +50,7 @@ export function getGrandparentComps(logger: Logger): {
         type: 'init',
       }));
     }
-    update(props: GrandParentPropsType) {
+    updateAfterChildren(props: GrandParentPropsType) {
       this.logger.add(new LogItem({
         instance: this,
         blueprint: _GrandParent,

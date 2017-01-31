@@ -11,6 +11,12 @@ import { IParentableBy } from './types/IParentableBy';
 import Root, { _Root } from './components/Root';
 import * as _ from 'lodash';
 
+export type RootRenderableType = RenderableType<
+  BasePropsType,
+  BaseBlueprint<BasePropsType> & IParentableBy<_Root>,
+  _Root
+>;
+
 export class ReactivePixiRenderer {
   renderer: SystemRenderer;
   instanceTree: InstanceTreeType;
@@ -23,11 +29,7 @@ export class ReactivePixiRenderer {
       children: {},
     };
   }
-  render(toRender?: RenderableType<
-    BasePropsType,
-    BaseBlueprint<BasePropsType> & IParentableBy<_Root>,
-    _Root
-  >) {
+  render(toRender?: RootRenderableType) {
     const renderRoot = Root({
       key: '__ROOT__',
     }, _.compact([
@@ -83,8 +85,9 @@ export function render(
       }
     }
     const childInstanceTree = instanceTree.children[key];
+    childInstanceTree.instance.updateBeforeChildren(renderableChild.props);
     render(childInstanceTree, renderableChild);
-    childInstanceTree.instance.update(renderableChild.props);
+    childInstanceTree.instance.updateAfterChildren(renderableChild.props);
   });
 
 }

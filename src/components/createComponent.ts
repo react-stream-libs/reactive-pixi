@@ -4,12 +4,12 @@ import { BasePropsType } from '../types/BasePropsType';
 import { RenderableType } from '../types/Renderable';
 
 export function createComponent<
-  BlueprintClass extends BaseBlueprint<PropsType>,
+  BlueprintClass extends BaseBlueprint<PropsType> & IParentableBy<ParentableTypes>,
   ParentableTypes extends BaseBlueprint<BasePropsType>,
   PropsType extends BasePropsType
 >(
   blueprintClass: {
-    new(): BlueprintClass & IParentableBy<BaseBlueprint<BasePropsType>>
+    new(): BlueprintClass & IParentableBy<ParentableTypes>
   },
 ) {
   return function _componentMetaData(

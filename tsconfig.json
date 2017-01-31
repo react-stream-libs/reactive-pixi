@@ -24,7 +24,8 @@
     "lib",
     "lib_es6",
     "examples",
-    "src_old"
+    "src_old",
+    "webpack"
   ],
   "compileOnSave": false
 }

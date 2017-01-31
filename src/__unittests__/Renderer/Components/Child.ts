@@ -23,7 +23,10 @@ export class __Child extends BaseBlueprint<ChildPropsType>
       type: 'init',
     }));
   }
-  update(props: ChildPropsType) {
+  updateBeforeChildren(props: ChildPropsType) {
+
+  }
+  updateAfterChildren(props: ChildPropsType) {
   }
   delete() {
   }

@@ -1,4 +1,4 @@
-import { SystemRenderer } from 'pixi.js';
+import { SystemRenderer, Container } from 'pixi.js';
 
 import { BaseBlueprint } from '../types/BaseBlueprint';
 import { BasePropsType } from '../types/BasePropsType';
@@ -11,19 +11,27 @@ export type _RootPropsType = {
 
 export class _NoneExistentBlueprint extends BaseBlueprint<BasePropsType> {
   init(parent: BaseBlueprint<BasePropsType>) {}
-  update(props: BasePropsType) {}
+  updateBeforeChildren(props: BasePropsType) {}
+  updateAfterChildren(props: BasePropsType) {}
   delete() {}
 }
 
 export class _Root extends BaseBlueprint<BasePropsType> implements IParentableBy<_NoneExistentBlueprint> {
+  container: Container;
   renderer: SystemRenderer;
   constructor(renderer?: SystemRenderer) {
     super();
     this.renderer = renderer;
+    this.container = new Container();
   }
   init(parent: _NoneExistentBlueprint) {
   }
-  update(props: BasePropsType) {}
+  updateBeforeChildren(props: BasePropsType) {
+
+  }
+  updateAfterChildren(props: BasePropsType) {
+    this.renderer.render(this.container);
+  }
   delete() {}
 }
 
@@ -40,7 +48,10 @@ export class _Circle extends BaseBlueprint<_RootPropsType>
   init(parent: _Root) {
 
   }
-  update(props: _CirclePropsType) {
+  updateBeforeChildren(props: _CirclePropsType) {
+
+  }
+  updateAfterChildren(props: _CirclePropsType) {
 
   }
   delete() {
