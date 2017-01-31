@@ -7,7 +7,7 @@
     "_cp_d.ts_files_deep": "copyfiles -u 1 'lib_es6/**/*.d.ts' lib",
     "cp_d.ts_files": "npm run _cp_d.ts_files_shallow && npm run _cp_d.ts_files_deep ",
     "build": "npm run build_es6 && npm run es6_to_es5 && npm run cp_d.ts_files",
-    "prepublish": "(in-publish && npm run clean && npm run build) || not-in-publish",
+    "prepublish": "npm run clean && npm run build",
     "compile_doc_webpack": "tsc src/docs/webpack/build.ts",
     "build_doc": "npm run compile_doc_webpack && webpack --config src/docs/webpack/build.js",
     "run_doc": "npm run compile_doc_webpack && webpack-dev-server --config src/docs/webpack/build.js",
@@ -88,7 +88,6 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "dom-css": "^2.1.0",
-    "in-publish": "^2.0.0"
+    "dom-css": "^2.1.0"
   }
 }
