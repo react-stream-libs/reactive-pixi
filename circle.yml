@@ -1,10 +1,26 @@
 machine:
   node:
-    version: 6.9.4
+    version: 7.2.0
+
+dependencies:
+  override:
+    - /bin/true
+  cache_directories:
+    - "~/.local"
+  pre:
+    - >-
+      if [[ ! -d "$HOME/.local/debs" ]]; then \
+        mkdir -p "$HOME/.local/debs"; cd "$HOME/.local/debs" \
+        && sudo apt-get download libgif-dev \
+      ; fi
+  post:
+    - sudo dpkg -i $HOME/.local/debs/*.deb
+    - cd $HOME/reactive-pixi
+    - npm install
 
 test:
   override:
-    - npm run build
+    - npm run test
 
 deployment:
   master:
