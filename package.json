@@ -24,12 +24,6 @@
   "repository": "https://github.com/react-stream-libs/reactive-pixi.git",
   "author": "devdoomari <devdoomari __at__ gmail dotttt commmm>",
   "license": "Personal",
-  "peerDependencies": {
-    "@types/react": "^15.0.0",
-    "@types/react-dom": "^0.14.20",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
-  },
   "devDependencies": {
     "@kadira/react-storybook-addon-info": "^3.3.0",
     "@kadira/storybook": "^2.21.0",
@@ -38,7 +32,7 @@
     "@types/jest": "^16.0.4",
     "@types/lodash": "^4.14.50",
     "@types/node": "^7.0.4",
-    "@types/pixi.js": "latest",
+    "@types/pixi.js": "^4.3.1",
     "@types/react": "^15.0.4",
     "@types/react-bootstrap": "^0.0.43",
     "@types/react-dom": "^0.14.21",
@@ -62,7 +56,7 @@
     "json-stringify-safe": "^5.0.1",
     "lodash": "^4.17.4",
     "monaco-editor": "^0.8.1",
-    "pixi.js": "latest",
+    "pixi.js": "^4.3.4",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
