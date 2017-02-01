@@ -17,7 +17,7 @@
     "unittest": "jest --config src/__unittests__/jest_unittests.json"
   },
   "name": "reactive-pixi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "(sort-of) Reactive Pixi JS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
