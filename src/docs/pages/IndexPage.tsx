@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ReactWrapper from '../pageBlocks/ReactWrapper';
 import { Stage } from '../../components/Stage';
-import { Graphics } from '../../components/Graphics/Graphics';
+import { Paper } from '../../components/Graphics/Paper';
 import { Rectangle } from '../../components/Graphics/Rectangle';
 export type PropsType = {
 
@@ -29,7 +29,7 @@ export default class IndexPage extends React.Component<PropsType, StateType> {
       key: 'mainStage',
       // rotation: Math.PI * (this.rotation / 360),
     }, [
-      Graphics({
+      Paper({
         key: 'graphics',
         // rotation: Math.PI * (this.rotation / 360),
         x: 0, y: 0,

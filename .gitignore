@@ -4,3 +4,4 @@ lib_es6
 npm-debug.log*
 dist
 src/docs/*.js
+src/docs/**/*.js

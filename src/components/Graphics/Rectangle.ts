@@ -4,10 +4,10 @@ import { createComponent } from '../createComponent';
 import { IParentableBy } from '../../types/IParentableBy';
 import { RenderableType } from '../../types/Renderable';
 
-import { _Graphics } from './Graphics';
+import { _Paper } from './Paper';
 import { LineStyleType, getLineStyle, setLineStyle } from './utils/lineStyleStore';
 
-export type _RectangleParentTypes = _Graphics
+export type _RectangleParentTypes = _Paper
 ;
 export type RectanglePropsType = {
   x: number, y: number,
@@ -23,7 +23,7 @@ export class _Rectangle extends BaseBlueprint<RectanglePropsType>
   prevProps: RectanglePropsType;
   init(parent: _RectangleParentTypes) {
     this.parent = parent;
-    if (this.parent instanceof _Graphics) {
+    if (this.parent instanceof _Paper) {
       return;
     }
     // FIXME: throw error here.
@@ -38,7 +38,7 @@ export class _Rectangle extends BaseBlueprint<RectanglePropsType>
   updateAfterChildren(props: RectanglePropsType) {
   }
   delete() {
-    if (this.parent instanceof _Graphics) {
+    if (this.parent instanceof _Paper) {
       return;
     }
     // FIXME: throw error here.
