@@ -5144,12 +5144,6 @@ react-dom@^15.2.1, react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-foundation@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-foundation/-/react-foundation-0.7.0.tgz#e52db639031ffc979dc996538cebd730db00c328"
-  dependencies:
-    classnames "^2.2.3"
-
 react-fuzzy@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/react-fuzzy/-/react-fuzzy-0.3.3.tgz#9f6775393cd03bbd3c977651771abe16c8b29a81"
